@@ -13,6 +13,4 @@ class MoneyCollector(Role):
         if self.balance.amount < amount:
             raise Exception("insufficient money!")
         self.balance.decrease(amount)
-
-    def get_amount(self):
-        return self.balance.get_amount()
+        self.phone.send_withdraw_msg(amount)

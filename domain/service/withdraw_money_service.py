@@ -10,8 +10,7 @@ class WithdrawMoneyService(object):
 
     def execute(self, account_id, amount):
         account = self.repo.get(account_id)
+        Role.inject(account, MoneyCollector)
         Role.cast(account, MoneyCollector).withdraw(amount)
 
-    def get_amount(self, account_id):
-        account = self.repo.get(account_id)
-        return Role.cast(account, MoneyCollector).get_amount()
+

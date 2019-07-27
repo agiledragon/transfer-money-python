@@ -12,5 +12,5 @@ class Entity(object):
 
     @property
     def id(self):
-        return self.id
+        return self._id
 

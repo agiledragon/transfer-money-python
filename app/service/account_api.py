@@ -1,5 +1,7 @@
 from domain.service.account_service import AccountService
 from domain.service.withdraw_money_service import WithdrawMoneyService
+from domain.service.transfer_money_to_local_service import TransferMoneyToLocalService
+from domain.service.transfer_money_service import TransferMoneyService
 
 
 class AccountApi(object):
@@ -7,6 +9,8 @@ class AccountApi(object):
     def __init__(self):
         self.account_service = AccountService()
         self.withdraw_money_service = WithdrawMoneyService()
+        self.transfer_money_to_local_service = TransferMoneyToLocalService()
+        self.transfer_money_service = TransferMoneyService()
 
     def create_account(self, phone_number, init_amount):
         id = self._generate_account_id(phone_number)
@@ -20,7 +24,10 @@ class AccountApi(object):
         self.withdraw_money_service.execute(account_id, amount)
 
     def get_amount(self, account_id):
-        return self.withdraw_money_service.get_amount(account_id)
+        return self.transfer_money_service.get_amount(account_id)
+
+    def transfer_money_to_local(self, from_id, to_id, amount):
+        return self.transfer_money_to_local_service.execute(from_id, to_id, amount)
 
     @staticmethod
     def _generate_account_id(phone_number):
