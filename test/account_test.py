@@ -64,6 +64,11 @@ class AccountTest(unittest.TestCase):
         self.api.transfer_money_to_remote(self.jim_account_id, self.lucy_account_id, amount)
         self.assertEqual(self.jim_init_amount - amount, self.api.get_amount(self.jim_account_id))
 
+    def test_transfer_money_from_remote_service(self):
+        amount = 1500
+        self.api.transfer_money_from_remote(self.lucy_account_id, self.jim_account_id, amount)
+        self.assertEqual(self.jim_init_amount + amount, self.api.get_amount(self.jim_account_id))
+
 
 if __name__ == '__main__':
     unittest.main()

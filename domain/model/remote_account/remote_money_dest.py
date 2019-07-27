@@ -10,8 +10,8 @@ class RemoteMoneyDest(MoneyDest):
 
     def transfer_money_from(self, from_id, amount):
         send_transfer_to_protocol_msg(from_id, self.account_info.id, amount)
-        resp = wait_protocol_resp()
-        if resp.is_failed:
+        ok = wait_protocol_resp()
+        if ok.is_failed:
             raise Exception("transfer money to remote fail!")
 
     def get_account_id(self):

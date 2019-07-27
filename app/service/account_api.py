@@ -3,6 +3,7 @@ from domain.service.withdraw_money_service import WithdrawMoneyService
 from domain.service.transfer_money_to_local_service import TransferMoneyToLocalService
 from domain.service.transfer_money_service import TransferMoneyService
 from domain.service.transfer_money_to_remote_service import TransferMoneyToRemoteService
+from domain.service.transfer_money_from_remote_service import TransferMoneyFromRemoteService
 
 
 class AccountApi(object):
@@ -13,6 +14,7 @@ class AccountApi(object):
         self.transfer_money_to_local_service = TransferMoneyToLocalService()
         self.transfer_money_service = TransferMoneyService()
         self.transfer_money_to_remote_service = TransferMoneyToRemoteService()
+        self.transfer_money_from_remote_service = TransferMoneyFromRemoteService()
 
     def create_account(self, phone_number, init_amount):
         id = self._generate_account_id(phone_number)
@@ -33,6 +35,9 @@ class AccountApi(object):
 
     def transfer_money_to_remote(self, from_id, to_id, amount):
         return self.transfer_money_to_remote_service.execute(from_id, to_id, amount)
+
+    def transfer_money_from_remote(self, from_id, to_id, amount):
+        return self.transfer_money_from_remote_service.execute(from_id, to_id, amount)
 
     @staticmethod
     def _generate_account_id(phone_number):

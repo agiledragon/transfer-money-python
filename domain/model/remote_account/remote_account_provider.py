@@ -12,3 +12,7 @@ def wait_protocol_resp():
     ok = Response()
     ok.is_failed = False
     return ok
+
+
+def send_protocol_resp(resp):
+    pass
