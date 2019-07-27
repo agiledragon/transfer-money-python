@@ -1,10 +1,10 @@
 from domain.model.base.aggregate_root import AggregateRoot
-from domain.model.account.account_info import AccountInfo
-from domain.model.account.phone import Phone
-from domain.model.account.balance import Balance
+from domain.model.comm_role.account_info import AccountInfo
+from domain.model.local_account.phone import Phone
+from domain.model.local_account.balance import Balance
 
 
-class Account(AggregateRoot):
+class LocalAccount(AggregateRoot):
     def __init__(self, account_id, phone_number, amount):
         AggregateRoot.__init__(self, account_id)
         self.account_info = AccountInfo(account_id)

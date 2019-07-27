@@ -2,7 +2,7 @@ import unittest
 
 from domain.model.base.repo import Repo
 from app.service.account_api import AccountApi
-from domain.model.account import account_repo
+from domain.model.local_account import local_account_repo
 
 
 class FakeAccountRepo(Repo):
@@ -31,7 +31,8 @@ class FakeAccountRepo(Repo):
 
 
 repo = FakeAccountRepo()
-account_repo.set(repo)
+local_account_repo.set(repo)
+
 
 class AccountTest(unittest.TestCase):
 
@@ -57,6 +58,11 @@ class AccountTest(unittest.TestCase):
         self.api.transfer_money_to_local(self.jim_account_id, self.lucy_account_id, amount)
         self.assertEqual(self.jim_init_amount - amount, self.api.get_amount(self.jim_account_id))
         self.assertEqual(self.lucy_init_amount + amount, self.api.get_amount(self.lucy_account_id))
+
+    def test_transfer_money_to_remote_service(self):
+        amount = 1500
+        self.api.transfer_money_to_remote(self.jim_account_id, self.lucy_account_id, amount)
+        self.assertEqual(self.jim_init_amount - amount, self.api.get_amount(self.jim_account_id))
 
 
 if __name__ == '__main__':

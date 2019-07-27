@@ -1,5 +1,5 @@
 from domain.model.base.value_object import ValueObject
-from domain.model.account.account_info import AccountInfo
+from domain.model.comm_role.account_info import AccountInfo
 
 
 class Phone(ValueObject):
